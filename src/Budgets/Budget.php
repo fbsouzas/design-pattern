@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Fbsouzas\DesingPattern;
+namespace Fbsouzas\DesignPattern\Budgets;
 
 class Budget
 {
