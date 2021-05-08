@@ -6,5 +6,6 @@ namespace Fbsouzas\DesignPattern\Budgets;
 
 class Budget
 {
+    public int $quantityOfItems;
     public float $value;
 }
