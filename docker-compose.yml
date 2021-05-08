@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  design-pattern-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: design-pattern-php
+    container_name: design-pattern-php
+    restart: unless-stopped
+    working_dir: /var/www
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/var/www
+    command: php -S 0.0.0.0:9000
