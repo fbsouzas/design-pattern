@@ -3,5 +3,11 @@
         "psr-4": {
             "Fbsouzas\\DesignPattern\\": "src/"
         }
+    },
+    "scripts": {
+        "dc": "docker-compose exec design-pattern-app"
+    },
+    "require": {
+        "squizlabs/php_codesniffer": "^3.6"
     }
 }
