@@ -6,14 +6,20 @@ namespace Fbsouzas\DesignPattern\Taxes;
 
 use Fbsouzas\DesignPattern\Budgets\Budget;
 
-class IOF implements Tax
+class IOF extends TaxWith2TaxRates
 {
-    public function calculate(Budget $budget): float
+    protected function shouldApplyTheMaximumTaxRate(Budget $budget): bool
     {
-        if ($budget->value > 500) {
-            return $budget->value * 0.04;
-        }
+        return $budget->value > 500;
+    }
 
+    protected function maximumTaxRate(Budget $budget): float
+    {
+        return $budget->value * 0.04;
+    }
+
+    protected function minimumTaxRate(Budget $budget): float
+    {
         return $budget->value * 0.03;
     }
 }
