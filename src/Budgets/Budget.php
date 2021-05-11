@@ -4,32 +4,37 @@ declare(strict_types=1);
 
 namespace Fbsouzas\DesignPattern\Budgets;
 
-use DomainException;
+use Fbsouzas\DesignPattern\Budgets\States\InApproval;
+use Fbsouzas\DesignPattern\Budgets\States\State;
 
 class Budget
 {
     public int $quantityOfItems;
     public float $value;
-    public string $state;
+    public State $state;
 
-    public function applyExtraDiscount(): void
+    public function __construct()
     {
-        $this->value -= $this->calculateExtraDiscount();
+        $this->state = new InApproval();
     }
 
-    /**
-     * @throws DomainException
-     */
-    private function calculateExtraDiscount(): float
+    public function calculateExtraDiscount(): void
     {
-        if ($this->state == 'IN_APPROVAL') {
-            return $this->value * 0.05;
-        }
+        $this->value -= $this->state->calculateExtraDiscount($this);
+    }
 
-        if ($this->state == 'APPROVED') {
-            return $this->value * 0.02;
-        }
+    public function approve(): void
+    {
+        $this->state->approve($this);
+    }
 
-        throw new DomainException('A budget disapproved or finished can not received an extra discount.');
+    public function disapprove(): void
+    {
+        $this->state->disapprove($this);
+    }
+
+    public function finish(): void
+    {
+        $this->state->finish($this);
     }
 }
