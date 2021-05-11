@@ -11,7 +11,7 @@ class Budget
 {
     public int $quantityOfItems;
     public float $value;
-    public State $state;
+    private State $state;
 
     public function __construct()
     {
