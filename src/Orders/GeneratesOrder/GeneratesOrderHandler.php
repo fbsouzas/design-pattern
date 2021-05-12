@@ -12,11 +12,13 @@ class GeneratesOrderHandler
 {
     private string $orderRepository;
     private string $mailService;
+    private string $logService;
 
     public function __construct()
     {
-        $this->orderRepository = 'Creates order on the database';
-        $this->mailService = 'Sends email to client';
+        $this->orderRepository = 'Creates order on the database.';
+        $this->mailService = 'Sends email to client.';
+        $this->logService = 'Order created.';
     }
 
     public function execute(GeneratesOrderCommand $command): void
@@ -34,5 +36,6 @@ class GeneratesOrderHandler
 
         echo $this->orderRepository . PHP_EOL;
         echo $this->mailService . PHP_EOL;
+        echo $this->logService . PHP_EOL;
     }
 }
