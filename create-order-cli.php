@@ -1,5 +1,6 @@
 <?php
 
+use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\GeneratesOrderLog;
 use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\SaveOrderOnDB;
 use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\SendTheOrderByEmail;
 use Fbsouzas\DesignPattern\Orders\GeneratesOrder\GeneratesOrderCommand;
@@ -15,4 +16,5 @@ $generateOrderCommand = new GeneratesOrderCommand($budgetValue, $quantityItems, 
 $generateOrderHandler = new GeneratesOrderHandler();
 $generateOrderHandler->addAction(new SaveOrderOnDB());
 $generateOrderHandler->addAction(new SendTheOrderByEmail());
+$generateOrderHandler->addAction(new GeneratesOrderLog());
 $generateOrderHandler->execute($generateOrderCommand);
