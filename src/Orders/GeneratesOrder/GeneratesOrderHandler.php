@@ -6,14 +6,14 @@ namespace Fbsouzas\DesignPattern\Orders\GeneratesOrder;
 
 use DateTimeImmutable;
 use Fbsouzas\DesignPattern\Budgets\Budget;
-use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\Action;
+use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\ActionAfterGenerateAnOrder;
 use Fbsouzas\DesignPattern\Orders\Order;
 
 class GeneratesOrderHandler
 {
     private array $actions = [];
 
-    public function addAction(Action $action): void
+    public function addAction(ActionAfterGenerateAnOrder $action): void
     {
         $this->actions[] = $action;
     }

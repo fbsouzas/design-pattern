@@ -6,7 +6,7 @@ namespace Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions;
 
 use Fbsouzas\DesignPattern\Orders\Order;
 
-interface Action
+interface ActionAfterGenerateAnOrder
 {
     public function execute(Order $order): void;
 }

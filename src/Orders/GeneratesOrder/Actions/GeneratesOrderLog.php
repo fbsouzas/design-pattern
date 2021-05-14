@@ -6,7 +6,7 @@ namespace Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions;
 
 use Fbsouzas\DesignPattern\Orders\Order;
 
-class GeneratesOrderLog implements Action
+class GeneratesOrderLog implements ActionAfterGenerateAnOrder
 {
     public function execute(Order $order): void
     {
