@@ -6,13 +6,18 @@ namespace Fbsouzas\DesignPattern\Orders\GeneratesOrder;
 
 use DateTimeImmutable;
 use Fbsouzas\DesignPattern\Budgets\Budget;
-use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\GeneratesOrderLog;
-use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\SaveOrderOnDB;
-use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\SendTheOrderByEmail;
+use Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions\Action;
 use Fbsouzas\DesignPattern\Orders\Order;
 
 class GeneratesOrderHandler
 {
+    private array $actions = [];
+
+    public function addAction(Action $action): void
+    {
+        $this->actions[] = $action;
+    }
+
     public function execute(GeneratesOrderCommand $command): void
     {
         $budget = new Budget();
@@ -26,12 +31,8 @@ class GeneratesOrderHandler
         $order->clientName = $command->clientName;
         $order->budget = $budget;
 
-        $repository = new SaveOrderOnDB();
-        $logger = new GeneratesOrderLog();
-        $sender = new SendTheOrderByEmail();
-
-        $repository->execute($order);
-        $logger->execute($order);
-        $sender->execute($order);
+        foreach ($this->actions as $action) {
+            $action->execute($order);
+        }
     }
 }

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Fbsouzas\DesignPattern\Orders\GeneratesOrder\Actions;
 
 use Fbsouzas\DesignPattern\Orders\Order;
 
-class SendTheOrderByEmail
+class SendTheOrderByEmail implements Action
 {
     public function execute(Order $order): void
     {
