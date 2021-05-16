@@ -1,6 +1,7 @@
 <?php
 
 use Fbsouzas\DesignPattern\Budgets\Budget;
+use Fbsouzas\DesignPattern\Budgets\BudgetList;
 
 require 'vendor/autoload.php';
 
@@ -20,13 +21,12 @@ $budget3->quantityOfItems = 3;
 $budget3->value = 50;
 $budget3->disapprove();
 
-$budgetList = [
-    $budget1,
-    $budget2,
-    $budget3,
-];
+$budgetList = new BudgetList();
+$budgetList->addBudget($budget1);
+$budgetList->addBudget($budget2);
+$budgetList->addBudget($budget3);
 
-foreach ($budgetList as $budget) {
+foreach ($budgetList->budgets() as $budget) {
     echo 'Value: ' . $budget->value . PHP_EOL;
     echo 'Items quantity: ' . $budget->quantityOfItems . PHP_EOL;
     echo 'Stastus: ' . get_class($budget->state) . PHP_EOL;
