@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Fbsouzas\DesignPattern\Budgets;
 
-class BudgetList
+use ArrayIterator;
+use IteratorAggregate;
+
+class BudgetList implements IteratorAggregate
 {
     /** @var array<Budget> */
     private array $budgets;
@@ -19,8 +22,8 @@ class BudgetList
         $this->budgets[] = $budget;
     }
 
-    public function budgets(): array
+    public function getIterator(): ArrayIterator
     {
-        return $this->budgets;
+        return new ArrayIterator($this->budgets);
     }
 }
