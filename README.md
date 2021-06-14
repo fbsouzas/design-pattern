@@ -55,3 +55,13 @@ I used this pattern to encapsulate all actions before generating a new order:
 I used this pattern to iterator about a budget list:
 
 - [BudgetList](src/Budgets/BudgetList.php)
+
+## Structural Patterns
+
+### Adapter
+I used this pattern to implement differents way to request external APIs:
+
+- [RegistersBudget](src/Budgets/RegistersBudget.php)
+    - [HttpAdapter](src/Budgets/Services/HttpAdapter.php)
+    - [CurlHttpAdapter](src/Budgets/Services/CurlHttpAdapter.php)
+    - [GuzzleHttpAdapter](src/Budgets/Services/GuzzleHttpAdapter.php)
