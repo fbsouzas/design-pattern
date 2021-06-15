@@ -65,3 +65,15 @@ I used this pattern to implement differents way to request external APIs:
     - [HttpAdapter](src/Budgets/Services/HttpAdapter.php)
     - [CurlHttpAdapter](src/Budgets/Services/CurlHttpAdapter.php)
     - [GuzzleHttpAdapter](src/Budgets/Services/GuzzleHttpAdapter.php)
+
+### Bridge
+I used this pattern to generate different reports in different formats easily:
+
+
+- [ReportData](src/Reports/ReportData.php)
+    - [BudgetReportData](src/Reports/Budget/BudgetReportData.php)
+    - [OrderReportData](src/Reports/Order/OrderReportData.php)
+
+- [ReportType](src/Reports/ReportType.php)
+    - [XMLReportType](src/Reports/XMLReportType.php)
+    - [ZipReportType](src/Reports/ZipReportType.php)
