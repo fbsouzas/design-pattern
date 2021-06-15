@@ -5,7 +5,8 @@ use Fbsouzas\DesignPattern\Budgets\BudgetList;
 use Fbsouzas\DesignPattern\Budgets\RegistersBudget;
 use Fbsouzas\DesignPattern\Budgets\Services\GuzzleHttpAdapter;
 use Fbsouzas\DesignPattern\Budgets\States\Finished;
-use Fbsouzas\DesignPattern\Reports\Budget\Zip;
+use Fbsouzas\DesignPattern\Reports\Budget\BudgetReportData;
+use Fbsouzas\DesignPattern\Reports\XMLReportType;
 
 require 'vendor/autoload.php';
 
@@ -13,10 +14,6 @@ $budget1 = new Budget();
 $budget1->quantityOfItems = 7;
 $budget1->value = 700;
 $budget1->approve();
-
-$budgetReportZip = new Zip();
-
-$budgetReportZip->export($budget1);
 
 $budget2 = new Budget();
 $budget2->quantityOfItems = 15;
@@ -46,3 +43,8 @@ foreach ($budgetList as $budget) {
         $registersBudget->register($budget);
     }
 }
+
+$reportData = new BudgetReportData($budget1);
+$xmlReportType = new XMLReportType('budget');
+
+$xmlReportType->export($reportData);
