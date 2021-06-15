@@ -77,3 +77,12 @@ I used this pattern to generate different reports in different formats easily:
 - [ReportType](src/Reports/ReportType.php)
     - [XMLReportType](src/Reports/XMLReportType.php)
     - [ZipReportType](src/Reports/ZipReportType.php)
+
+### Decorator
+I used this pattern to calculate combined budget taxes:
+
+- [TaxCalculator](src/Taxes/TaxCalculator.php)
+    - [Tax](src/Taxes/Tax.php)
+    - [ICMS](src/Taxes/ICMS.php)
+    - [ISS](src/Taxes/ISS.php)
+    - [TaxWith2TaxRates](src/Taxes/TaxWith2TaxRates.php)
