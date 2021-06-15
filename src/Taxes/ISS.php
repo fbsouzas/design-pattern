@@ -6,9 +6,9 @@ namespace Fbsouzas\DesignPattern\Taxes;
 
 use Fbsouzas\DesignPattern\Budgets\Budget;
 
-class ISS implements Tax
+class ISS extends Tax
 {
-    public function calculate(Budget $budget): float
+    public function calculateSpecificTax(Budget $budget): float
     {
         return $budget->value * 0.06;
     }

@@ -7,6 +7,9 @@ use Fbsouzas\DesignPattern\Budgets\Services\GuzzleHttpAdapter;
 use Fbsouzas\DesignPattern\Budgets\States\Finished;
 use Fbsouzas\DesignPattern\Reports\Budget\BudgetReportData;
 use Fbsouzas\DesignPattern\Reports\XMLReportType;
+use Fbsouzas\DesignPattern\Taxes\ICMS;
+use Fbsouzas\DesignPattern\Taxes\ISS;
+use Fbsouzas\DesignPattern\Taxes\TaxCalculator;
 
 require 'vendor/autoload.php';
 
@@ -42,6 +45,11 @@ foreach ($budgetList as $budget) {
 
         $registersBudget->register($budget);
     }
+
+    $taxCalculator = new TaxCalculator();
+
+    echo 'Tax: ' . $taxCalculator->calculate($budget, new ICMS(new ISS())) . PHP_EOL;
+    echo PHP_EOL;
 }
 
 $reportData = new BudgetReportData($budget1);

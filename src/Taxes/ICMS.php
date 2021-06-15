@@ -6,9 +6,9 @@ namespace Fbsouzas\DesignPattern\Taxes;
 
 use Fbsouzas\DesignPattern\Budgets\Budget;
 
-class ICMS implements Tax
+class ICMS extends Tax
 {
-    public function calculate(Budget $budget): float
+    protected function calculateSpecificTax(Budget $budget): float
     {
         return $budget->value * 0.1;
     }

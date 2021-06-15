@@ -6,9 +6,9 @@ namespace Fbsouzas\DesignPattern\Taxes;
 
 use Fbsouzas\DesignPattern\Budgets\Budget;
 
-abstract class TaxWith2TaxRates implements Tax
+abstract class TaxWith2TaxRates extends Tax
 {
-    public function calculate(Budget $budget): float
+    public function calculateSpecificTax(Budget $budget): float
     {
         if ($this->shouldApplyTheMaximumTaxRate($budget)) {
             return $this->maximumTaxRate($budget);
