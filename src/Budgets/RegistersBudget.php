@@ -24,8 +24,8 @@ class RegistersBudget
         }
 
         $this->http->post('http://api.register.budget/', [
-            'value' => $budget->value,
-            'quantity_items' => $budget->quantityOfItems,
+            'value' => $budget->value(),
+            'quantity_items' => $budget->quantityOfItems(),
         ]);
     }
 }

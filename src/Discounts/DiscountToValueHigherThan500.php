@@ -10,8 +10,8 @@ class DiscountToValueHigherThan500 extends Discount
 {
     public function calculate(Budget $budget): float
     {
-        if ($budget->value > 500) {
-            return $budget->value * 0.05;
+        if ($budget->value() > 500) {
+            return $budget->value() * 0.05;
         }
 
         return $this->nextDiscount->calculate($budget);

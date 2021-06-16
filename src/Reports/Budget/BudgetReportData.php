@@ -19,8 +19,8 @@ class BudgetReportData implements ReportData
     public function data(): array
     {
         return [
-            'value' => $this->budget->value,
-            'quantity_items' => $this->budget->quantityOfItems,
+            'value' => $this->budget->value(),
+            'quantity_items' => $this->budget->quantityOfItems(),
         ];
     }
 }

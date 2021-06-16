@@ -10,6 +10,6 @@ class ISS extends Tax
 {
     public function calculateSpecificTax(Budget $budget): float
     {
-        return $budget->value * 0.06;
+        return $budget->value() * 0.06;
     }
 }

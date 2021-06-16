@@ -13,7 +13,7 @@ class Approved extends State
      */
     public function calculateExtraDiscount(Budget $budget): float
     {
-        return $budget->value * 0.02;
+        return $budget->value() * 0.02;
     }
 
     /**

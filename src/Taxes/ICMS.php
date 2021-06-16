@@ -10,6 +10,6 @@ class ICMS extends Tax
 {
     protected function calculateSpecificTax(Budget $budget): float
     {
-        return $budget->value * 0.1;
+        return $budget->value() * 0.1;
     }
 }

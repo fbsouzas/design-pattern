@@ -13,7 +13,7 @@ class InApproval extends State
      */
     public function calculateExtraDiscount(Budget $budget): float
     {
-        return $budget->value * 0.05;
+        return $budget->value() * 0.05;
     }
 
     /**
