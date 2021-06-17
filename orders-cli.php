@@ -14,26 +14,30 @@ use Fbsouzas\DesignPattern\Taxes\TaxCalculator;
 
 require 'vendor/autoload.php';
 
-$item1 = new Item();
-$item1->value = 500;
+$moreOldBudget = new Budget();
+$moreOldBudget->addItem(new Item(1000));
 
-$item2 = new Item();
-$item2->value = 300;
+$oldBudget = new Budget();
+$oldBudget->addItem(new Item(100));
+$oldBudget->addItem(new Item(100));
+$oldBudget->addItem(new Item(100));
+$oldBudget->addItem($moreOldBudget);
 
 $budget1 = new Budget();
-$budget1->addItem($item1);
-$budget1->addItem($item2);
+$budget1->addItem(new Item(500));
+$budget1->addItem(new Item(300));
+$budget1->addItem($oldBudget);
 $budget1->approve();
 
 $budget2 = new Budget();
-$budget2->addItem($item1);
-$budget2->addItem($item2);
+$budget2->addItem(new Item(500));
+$budget2->addItem(new Item(500));
 $budget2->approve();
 $budget2->finish();
 
 $budget3 = new Budget();
-$budget3->addItem($item1);
-$budget3->addItem($item2);
+$budget3->addItem(new Item(100));
+$budget3->addItem(new Item(100));
 $budget3->disapprove();
 
 $budgetList = new BudgetList();

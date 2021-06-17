@@ -8,7 +8,7 @@ use Fbsouzas\DesignPattern\Budgets\States\InApproval;
 use Fbsouzas\DesignPattern\Budgets\States\State;
 use Fbsouzas\DesignPattern\Items\Item;
 
-class Budget
+class Budget implements Budgetable
 {
     private array $items;
     public int $quantityOfItems;
@@ -28,10 +28,10 @@ class Budget
         $this->value -= $this->state->calculateExtraDiscount($this);
     }
 
-    public function addItem(Item $item): void
+    public function addItem(Budgetable $item): void
     {
-        $this->setValue($item->value);
-        $this->setQuantityOfItems();
+        $this->setValue($item->value());
+        $this->setQuantityOfItems($item->quantityOfItems());
 
         $this->items[] = $item;
     }
@@ -41,9 +41,9 @@ class Budget
         $this->value += $value;
     }
 
-    private function setQuantityOfItems(): void
+    private function setQuantityOfItems(int $quantityOfItems): void
     {
-        $this->quantityOfItems += 1;
+        $this->quantityOfItems += $quantityOfItems;
     }
 
     public function value(): float
