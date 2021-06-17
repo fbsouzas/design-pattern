@@ -6,7 +6,6 @@ namespace Fbsouzas\DesignPattern\Budgets;
 
 use Fbsouzas\DesignPattern\Budgets\States\InApproval;
 use Fbsouzas\DesignPattern\Budgets\States\State;
-use Fbsouzas\DesignPattern\Items\Item;
 
 class Budget implements Budgetable
 {

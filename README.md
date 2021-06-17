@@ -86,3 +86,10 @@ I used this pattern to calculate combined budget taxes:
     - [ICMS](src/Taxes/ICMS.php)
     - [ISS](src/Taxes/ISS.php)
     - [TaxWith2TaxRates](src/Taxes/TaxWith2TaxRates.php)
+
+### Composite
+I used this pattern to combine items and other budgets in a new budget:
+
+- [Budgetable](src/Budgets/Budgetable.php)
+    - [Budget](src/Budgets/Budget.php)
+    - [Item](src/Items/Item.php)
