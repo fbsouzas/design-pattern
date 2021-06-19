@@ -98,3 +98,9 @@ I used this pattern to combine items and other budgets in a new budget:
 I used this pattern to encapsulate all logic in the budget discount calculator:
 
 - [DiscountCalculator](src/Discounts/DiscountCalculator.php)
+
+### Proxy
+I used this pattern to cached some values that take 1 second to return from an external request simulation.
+
+- [Item](src/Items/Item.php)
+- [ItemCacheProxy](src/Items/ItemCacheProxy.php)
