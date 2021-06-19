@@ -93,3 +93,8 @@ I used this pattern to combine items and other budgets in a new budget:
 - [Budgetable](src/Budgets/Budgetable.php)
     - [Budget](src/Budgets/Budget.php)
     - [Item](src/Items/Item.php)
+
+### Facade
+I used this pattern to encapsulate all logic in the budget discount calculator:
+
+- [DiscountCalculator](src/Discounts/DiscountCalculator.php)
