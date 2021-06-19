@@ -19,6 +19,9 @@ class Item implements Budgetable
 
     public function value(): float
     {
+        // It simulates that the item value is an external service
+        sleep(1);
+
         return $this->value;
     }
 
