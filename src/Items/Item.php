@@ -8,13 +8,20 @@ use Fbsouzas\DesignPattern\Budgets\Budgetable;
 
 class Item implements Budgetable
 {
+    private string $code;
     private float $value;
     private int $quantityOfItems;
 
-    public function __construct(float $value)
+    public function __construct(string $code, float $value)
     {
+        $this->code = $code;
         $this->value = $value;
         $this->quantityOfItems = 1;
+    }
+
+    public function code(): string
+    {
+        return $this->code;
     }
 
     public function value(): float
