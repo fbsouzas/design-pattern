@@ -10,13 +10,17 @@ class DiscountCalculator
 {
     public function calculate(Budget $budget): float
     {
-
+        $logDicount = new LogDiscount();
         $chainOfDiscount = new DiscountToMoreThan5Items(
             new DiscountToValueHigherThan500(
                 new NoDiscount()
             )
         );
 
-        return $chainOfDiscount->calculate($budget);
+        $discountValue = $chainOfDiscount->calculate($budget);
+
+        $logDicount->log($discountValue);
+
+        return $discountValue;
     }
 }

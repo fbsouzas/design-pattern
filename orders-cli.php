@@ -5,6 +5,7 @@ use Fbsouzas\DesignPattern\Budgets\BudgetList;
 use Fbsouzas\DesignPattern\Budgets\RegistersBudget;
 use Fbsouzas\DesignPattern\Budgets\Services\GuzzleHttpAdapter;
 use Fbsouzas\DesignPattern\Budgets\States\Finished;
+use Fbsouzas\DesignPattern\Discounts\DiscountCalculator;
 use Fbsouzas\DesignPattern\Items\Item;
 use Fbsouzas\DesignPattern\Reports\Budget\BudgetReportData;
 use Fbsouzas\DesignPattern\Reports\XMLReportType;
@@ -57,7 +58,11 @@ foreach ($budgetList as $budget) {
         $registersBudget->register($budget);
     }
 
+    $discountCalculator = new DiscountCalculator();
     $taxCalculator = new TaxCalculator();
+
+    echo 'Discount value: ' . $discountCalculator->calculate($budget) . PHP_EOL;
+    echo PHP_EOL;
 
     echo 'Tax: ' . $taxCalculator->calculate($budget, new ICMS(new ISS())) . PHP_EOL;
     echo PHP_EOL;
