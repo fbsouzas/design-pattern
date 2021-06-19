@@ -31,9 +31,4 @@ class ItemCacheProxy extends Item
     {
         return $this->item->quantityOfItems();
     }
-
-    public function test()
-    {
-        return $this->cached;
-    }
 }
