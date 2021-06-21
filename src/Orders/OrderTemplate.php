@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Fbsouzas\DesignPattern\Orders;
 
-use DateTimeImmutable;
 use DateTimeInterface;
 
 class OrderTemplate

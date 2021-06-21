@@ -108,5 +108,6 @@ I used this pattern to cached some values that take 1 second to return from an e
 ### Flyweights
 I used this pattern to optimize and reduce the quantity of RAM consumed:
 
-- [Order](src/Orders/Order.php)
-- [OrderTemplate](src/Orders/OrderTemplate.php)
+- [OrderCreator](src/Orders/OrderCreator.php)
+    - [OrderTemplate](src/Orders/OrderTemplate.php)
+    - [Order](src/Orders/Order.php)
