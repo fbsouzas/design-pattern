@@ -104,3 +104,9 @@ I used this pattern to cached some values that take 1 second to return from an e
 
 - [Item](src/Items/Item.php)
 - [ItemCacheProxy](src/Items/ItemCacheProxy.php)
+
+### Flyweights
+I used this pattern to optimize and reduce the quantity of RAM consumed:
+
+- [Order](src/Orders/Order.php)
+- [OrderTemplate](src/Orders/OrderTemplate.php)
