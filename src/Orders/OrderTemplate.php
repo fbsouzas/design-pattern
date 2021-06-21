@@ -12,10 +12,10 @@ class OrderTemplate
     private string $clientName;
     private DateTimeInterface $finishDate;
 
-    public function __construct(string $clientName, string $finishDate)
+    public function __construct(string $clientName, DateTimeInterface $finishDate)
     {
         $this->clientName = $clientName;
-        $this->finishDate = new DateTimeImmutable($finishDate);
+        $this->finishDate = $finishDate;
     }
 
     public function clientName(): string

@@ -1,21 +1,21 @@
 <?php
 
 use Fbsouzas\DesignPattern\Budgets\Budget;
-use Fbsouzas\DesignPattern\Orders\Order;
-use Fbsouzas\DesignPattern\Orders\OrderTemplate;
+use Fbsouzas\DesignPattern\Orders\OrderCreator;
 
 require 'vendor/autoload.php';
 
 $orders = [];
-$orderTemplate = new OrderTemplate(md5('a'), date('Y-m-d'));
+$orderCreator = new OrderCreator();
 
 for ($i = 0; $i < 100000; $i++) {
-    $order = new Order();
+    $budget = new Budget();
 
-    $order->orderTemplate = $orderTemplate;
-    $order->budget = new Budget();
-
-    $orders[] = $order;
+    $orders[] = $orderCreator->create(
+        'Client Name',
+        date('Y-m-d'),
+        $budget
+    );
 }
 
 echo memory_get_peak_usage() . PHP_EOL;
