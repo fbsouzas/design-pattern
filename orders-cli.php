@@ -70,9 +70,9 @@ foreach ($budgetList as $key => $budget) {
     $discountCalculator = new DiscountCalculator();
     $taxCalculator = new TaxCalculator();
 
-    echo 'Discount value: ' . $discountCalculator->calculate($budget) . PHP_EOL;
-    echo PHP_EOL;
+    $discountCalculator->calculate($budget);
 
+    echo PHP_EOL;
     echo 'Tax: ' . $taxCalculator->calculate($budget, new ICMS(new ISS())) . PHP_EOL;
     echo PHP_EOL;
 }
