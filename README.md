@@ -111,3 +111,16 @@ I used this pattern to optimize and reduce the quantity of RAM consumed:
 - [OrderCreator](src/Orders/OrderCreator.php)
     - [OrderTemplate](src/Orders/OrderTemplate.php)
     - [Order](src/Orders/Order.php)
+
+## Creational Patterns
+
+### Factory Methods
+I used this pattern to implement logs in different outputs:
+
+- [LogWriter](src/Logs/LogWriter.php)
+    - [StdoutLogWriter](src/Logs/StdoutLogWriter.php)
+    - [FileLogWriter](src/Logs/FileLogWriter.php)
+
+- [LogManager](src/Logs/LogManager.php)
+    - [StdoutLogManager](src/Logs/StdoutLogManager.php)
+    - [FileLogManager](src/Logs/FileLogManager.php)
