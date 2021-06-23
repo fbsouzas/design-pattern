@@ -19,11 +19,10 @@ class GeneratesOrderHandler
 
     public function execute(GeneratesOrderCommand $command): void
     {
-        $order = new Order();
+        $order = new Order($command->budget);
 
         $order->finishDate = new DateTimeImmutable();
         $order->clientName = $command->clientName;
-        $order->budget = $command->budget;
 
         foreach ($this->actions as $action) {
             $action->execute($order);

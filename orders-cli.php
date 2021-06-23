@@ -8,8 +8,10 @@ use Fbsouzas\DesignPattern\Budgets\States\Finished;
 use Fbsouzas\DesignPattern\Discounts\DiscountCalculator;
 use Fbsouzas\DesignPattern\Items\Item;
 use Fbsouzas\DesignPattern\Items\ItemCacheProxy;
+use Fbsouzas\DesignPattern\Orders\OrderCreator;
 use Fbsouzas\DesignPattern\Reports\Budget\BudgetReportData;
 use Fbsouzas\DesignPattern\Reports\XMLReportType;
+use Fbsouzas\DesignPattern\Sales\ProductSaleFactory;
 use Fbsouzas\DesignPattern\Taxes\ICMS;
 use Fbsouzas\DesignPattern\Taxes\ISS;
 use Fbsouzas\DesignPattern\Taxes\TaxCalculator;
@@ -36,12 +38,12 @@ $budget1->addItem($item500);
 $budget1->addItem($item300);
 $budget1->addItem($oldBudget);
 $budget1->approve();
+$budget1->finish();
 
 $budget2 = new Budget();
 $budget2->addItem($item500);
 $budget2->addItem($item500);
 $budget2->approve();
-$budget2->finish();
 
 $budget3 = new Budget();
 $budget3->addItem($item100);
@@ -61,21 +63,31 @@ foreach ($budgetList as $key => $budget) {
 
     if ($budget->state instanceof Finished) {
         $registersBudget = new RegistersBudget(new GuzzleHttpAdapter());
+        $discountCalculator = new DiscountCalculator();
+        $taxCalculator = new TaxCalculator();
+        $orderCreator = new OrderCreator();
 
         $registersBudget->register($budget);
+        $discountCalculator->calculate($budget);
+
+        $order = $orderCreator->create('Fábio Souza', date('Y-m-d'), $budget);
+
+        $saleFactory = new ProductSaleFactory($order, $budget->quantityOfItems());
+
+        /** @var $sale ProductSale */
+        $sale = $saleFactory->crateSale();
+
+        echo PHP_EOL;
+        echo 'Sale value: ' . $sale->value() . PHP_EOL;
+        echo 'Sale quantity of items: ' . $sale->quantityOfItems() . PHP_EOL;
+        echo 'Sale tax: ' . $taxCalculator->calculate($budget, $saleFactory->tax()) . PHP_EOL;
+        echo 'Sale realized at: ' . $sale->realizedAt() . PHP_EOL;
+        echo PHP_EOL;
+
+        $reportData = new BudgetReportData($budget);
+        $xmlReportType = new XMLReportType('budget');
+
+        $xmlReportType->export($reportData);
     }
-
-    $discountCalculator = new DiscountCalculator();
-    $taxCalculator = new TaxCalculator();
-
-    $discountCalculator->calculate($budget);
-
-    echo PHP_EOL;
-    echo 'Tax: ' . $taxCalculator->calculate($budget, new ICMS(new ISS())) . PHP_EOL;
-    echo PHP_EOL;
 }
 
-$reportData = new BudgetReportData($budget1);
-$xmlReportType = new XMLReportType('budget');
-
-$xmlReportType->export($reportData);

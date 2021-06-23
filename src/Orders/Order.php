@@ -9,5 +9,15 @@ use Fbsouzas\DesignPattern\Budgets\Budget;
 class Order
 {
     public OrderTemplate $orderTemplate;
-    public Budget $budget;
+    private Budget $budget;
+
+    public function __construct(Budget $budget)
+    {
+        $this->budget = $budget;
+    }
+
+    public function value(): float
+    {
+        return $this->budget->value();
+    }
 }

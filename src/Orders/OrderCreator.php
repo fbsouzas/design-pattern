@@ -13,10 +13,9 @@ class OrderCreator
 
     public function create(string $clientName, string $formattedDate, Budget $budget): Order
     {
-        $order = new Order();
+        $order = new Order($budget);
 
         $order->orderTemplate = $this->orderTemplateGenerator($clientName, $formattedDate);
-        $order->budget = $budget;
 
         return $order;
     }
