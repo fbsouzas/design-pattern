@@ -124,3 +124,14 @@ I used this pattern to implement logs in different outputs:
 - [LogManager](src/Logs/LogManager.php)
     - [StdoutLogManager](src/Logs/StdoutLogManager.php)
     - [FileLogManager](src/Logs/FileLogManager.php)
+
+### Abstract Factory
+I used this pattern to receive specific tax to the specific sale type:
+
+- [Sale](src/Sales/Sale.php)
+    - [ProductSale](src/Sales/ProductSale.php)
+    - [ServiceSale](src/Sales/ServiceSale.php)
+
+- [SaleFactory](src/Sales/SaleFactory.php)
+    - [ProductSaleFactory](src/Sales/ProductSaleFactory.php)
+    - [ServiceSaleFactory](src/Sales/ServiceSaleFactory.php)
