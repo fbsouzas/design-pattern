@@ -16,8 +16,6 @@ use Fbsouzas\DesignPattern\Taxes\TaxCalculator;
 
 require 'vendor/autoload.php';
 
-$cached = [];
-
 $item1000 = new ItemCacheProxy(new Item('I001', 1000));
 $item500 = new ItemCacheProxy(new Item('I002', 500));
 $item300 = new ItemCacheProxy(new Item('I003', 300));

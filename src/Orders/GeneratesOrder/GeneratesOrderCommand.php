@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Fbsouzas\DesignPattern\Orders\GeneratesOrder;
 
+use Fbsouzas\DesignPattern\Budgets\Budget;
+
 class GeneratesOrderCommand
 {
-    public float $budgetValue;
-    public int $quantityItems;
+    public Budget $budget;
     public string $clientName;
 
-    public function __construct(float $budgetValue, int $quantityItems, string $clientName)
+    public function __construct(Budget $budget, string $clientName)
     {
-        $this->budgetValue = $budgetValue;
-        $this->quantityItems = $quantityItems;
+        $this->budget = $budget;
         $this->clientName = $clientName;
     }
 }
