@@ -14,6 +14,7 @@ class Invoice
     private string $companyContact;
     private string $companyAddress;
     private Order $order;
+    private float $tax;
     private string $observation;
     private DateTimeInterface $generatedAt;
 
@@ -40,6 +41,11 @@ class Invoice
     public function setOrder(Order $order): void
     {
         $this->order = $order;
+    }
+
+    public function setTax(float $tax): void
+    {
+        $this->tax = $tax;
     }
 
     public function setObservation(string $observation): void
@@ -95,5 +101,15 @@ class Invoice
     public function items(): array
     {
         return $this->order->items();
+    }
+
+    public function tax(): float
+    {
+        return $this->tax;
+    }
+
+    public function total(): float
+    {
+        return $this->order->value() + $this->tax;
     }
 }

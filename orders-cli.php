@@ -7,6 +7,7 @@ use Fbsouzas\DesignPattern\Budgets\Services\GuzzleHttpAdapter;
 use Fbsouzas\DesignPattern\Budgets\States\Finished;
 use Fbsouzas\DesignPattern\Discounts\DiscountCalculator;
 use Fbsouzas\DesignPattern\Invoices\Invoice;
+use Fbsouzas\DesignPattern\Invoices\InvoiceBuilder;
 use Fbsouzas\DesignPattern\Items\Item;
 use Fbsouzas\DesignPattern\Items\ItemCacheProxy;
 use Fbsouzas\DesignPattern\Orders\OrderCreator;
@@ -77,23 +78,23 @@ foreach ($budgetList as $key => $budget) {
 
         /** @var $sale ProductSale */
         $sale = $saleFactory->crateSale();
+        $tax = $taxCalculator->calculate($budget, $saleFactory->tax());
 
         echo PHP_EOL;
         echo 'Sale value: ' . $sale->value() . PHP_EOL;
         echo 'Sale quantity of items: ' . $sale->quantityOfItems() . PHP_EOL;
-        echo 'Sale tax: ' . $taxCalculator->calculate($budget, $saleFactory->tax()) . PHP_EOL;
+        echo 'Sale tax: ' . $tax . PHP_EOL;
         echo 'Sale realized at: ' . $sale->realizedAt() . PHP_EOL;
         echo PHP_EOL;
 
-        $invoice = new Invoice();
+        $builder = new InvoiceBuilder();
 
-        $invoice->setCompanyCNPJ('123.123.1123.0001-12');
-        $invoice->setCompanyName('The bigger tecnologic company');
-        $invoice->setCompanyContact('contact@thebiggercompany.com');
-        $invoice->setCompanyAddress('1 The bigger company St.');
-        $invoice->setOrder($order);
-        $invoice->setObservation('This is an invoice generated in the design pattern studies.');
-        $invoice->setGeneratedAt(new DateTimeImmutable());
+        $invoice = $builder->toTheCompany('The bigger tecnologic company', '123.123.1123.0001-12', '1 The bigger company St.')
+            ->withContact('contact@thebiggercompany.com')
+            ->forThisOrder($order)
+            ->withTheTax($tax)
+            ->withTheObservation('This is an invoice generated in the design pattern studies.')
+            ->build();
 
         echo "------ Start Invoice ------" . PHP_EOL;
         echo "Data of the invoice" . PHP_EOL;
@@ -110,9 +111,14 @@ foreach ($budgetList as $key => $budget) {
         }
 
         echo PHP_EOL;
-        echo "-------------------------" . PHP_EOL;
+
         echo "Quantity of items: {$invoice->quantityOfItems()}" . PHP_EOL;
-        echo "Invoice total: {$invoice->value()}" . PHP_EOL;
+        echo "Value: {$invoice->value()}" . PHP_EOL;
+
+        echo PHP_EOL;
+        echo "-------------------------" . PHP_EOL;
+        echo "Tax total: {$invoice->tax()}" . PHP_EOL;
+        echo "Invoice total: {$invoice->total()}" . PHP_EOL;
         echo "------ End Invoice ------" . PHP_EOL;
         echo PHP_EOL;
 
