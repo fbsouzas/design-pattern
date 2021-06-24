@@ -135,3 +135,11 @@ I used this pattern to receive specific tax to the specific sale type:
 - [SaleFactory](src/Sales/SaleFactory.php)
     - [ProductSaleFactory](src/Sales/ProductSaleFactory.php)
     - [ServiceSaleFactory](src/Sales/ServiceSaleFactory.php)
+
+### Builder
+I used this pattern to create spacific complex invoices classes:
+
+- [Invoice](src/Invoices/Invoice.php)
+    - [InvoiceBuilder](src/Invoices/InvoiceBuilder.php)
+    - [ProductInvoiceBuilder](src/Invoices/ProductInvoiceBuilder.php)
+    - [ServiceInvoiceBuilder](src/Invoices/ServiceInvoiceBuilder.php)
