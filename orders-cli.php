@@ -6,6 +6,7 @@ use Fbsouzas\DesignPattern\Budgets\RegistersBudget;
 use Fbsouzas\DesignPattern\Budgets\Services\GuzzleHttpAdapter;
 use Fbsouzas\DesignPattern\Budgets\States\Finished;
 use Fbsouzas\DesignPattern\Discounts\DiscountCalculator;
+use Fbsouzas\DesignPattern\Invoices\Invoice;
 use Fbsouzas\DesignPattern\Items\Item;
 use Fbsouzas\DesignPattern\Items\ItemCacheProxy;
 use Fbsouzas\DesignPattern\Orders\OrderCreator;
@@ -82,6 +83,37 @@ foreach ($budgetList as $key => $budget) {
         echo 'Sale quantity of items: ' . $sale->quantityOfItems() . PHP_EOL;
         echo 'Sale tax: ' . $taxCalculator->calculate($budget, $saleFactory->tax()) . PHP_EOL;
         echo 'Sale realized at: ' . $sale->realizedAt() . PHP_EOL;
+        echo PHP_EOL;
+
+        $invoice = new Invoice();
+
+        $invoice->setCompanyCNPJ('123.123.1123.0001-12');
+        $invoice->setCompanyName('The bigger tecnologic company');
+        $invoice->setCompanyContact('contact@thebiggercompany.com');
+        $invoice->setCompanyAddress('1 The bigger company St.');
+        $invoice->setOrder($order);
+        $invoice->setObservation('This is an invoice generated in the design pattern studies.');
+        $invoice->setGeneratedAt(new DateTimeImmutable());
+
+        echo "------ Start Invoice ------" . PHP_EOL;
+        echo "Data of the invoice" . PHP_EOL;
+        echo "Date: {$invoice->generatedAt()}"  . PHP_EOL;
+        echo "Company: {$invoice->companyName()} - {$invoice->companyCNPJ()}"  . PHP_EOL;
+        echo "Address: {$invoice->companyAddress()}" . PHP_EOL;
+        echo "Contact: {$invoice->companyContact()}" . PHP_EOL;
+        echo PHP_EOL;
+
+        echo "Items:" . PHP_EOL;
+
+        foreach ($invoice->items() as $item) {
+            echo "Value: {$item->value()} Quantity: {$item->quantityOfItems()}" . PHP_EOL;
+        }
+
+        echo PHP_EOL;
+        echo "-------------------------" . PHP_EOL;
+        echo "Quantity of items: {$invoice->quantityOfItems()}" . PHP_EOL;
+        echo "Invoice total: {$invoice->value()}" . PHP_EOL;
+        echo "------ End Invoice ------" . PHP_EOL;
         echo PHP_EOL;
 
         $reportData = new BudgetReportData($budget);

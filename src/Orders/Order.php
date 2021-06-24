@@ -20,4 +20,14 @@ class Order
     {
         return $this->budget->value();
     }
+
+    public function quantityOfItems(): int
+    {
+        return $this->budget->quantityOfItems();
+    }
+
+    public function items(): array
+    {
+        return $this->budget->items();
+    }
 }

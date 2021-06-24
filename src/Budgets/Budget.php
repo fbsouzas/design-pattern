@@ -50,6 +50,11 @@ class Budget implements Budgetable
         return $this->value;
     }
 
+    public function items(): array
+    {
+        return $this->items;
+    }
+
     public function quantityOfItems(): int
     {
         return $this->quantityOfItems;
