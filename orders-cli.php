@@ -6,16 +6,13 @@ use Fbsouzas\DesignPattern\Budgets\RegistersBudget;
 use Fbsouzas\DesignPattern\Budgets\Services\GuzzleHttpAdapter;
 use Fbsouzas\DesignPattern\Budgets\States\Finished;
 use Fbsouzas\DesignPattern\Discounts\DiscountCalculator;
-use Fbsouzas\DesignPattern\Invoices\Invoice;
-use Fbsouzas\DesignPattern\Invoices\InvoiceBuilder;
+use Fbsouzas\DesignPattern\Invoices\ProductInvoiceBuilder;
 use Fbsouzas\DesignPattern\Items\Item;
 use Fbsouzas\DesignPattern\Items\ItemCacheProxy;
 use Fbsouzas\DesignPattern\Orders\OrderCreator;
 use Fbsouzas\DesignPattern\Reports\Budget\BudgetReportData;
 use Fbsouzas\DesignPattern\Reports\XMLReportType;
 use Fbsouzas\DesignPattern\Sales\ProductSaleFactory;
-use Fbsouzas\DesignPattern\Taxes\ICMS;
-use Fbsouzas\DesignPattern\Taxes\ISS;
 use Fbsouzas\DesignPattern\Taxes\TaxCalculator;
 
 require 'vendor/autoload.php';
@@ -87,7 +84,7 @@ foreach ($budgetList as $key => $budget) {
         echo 'Sale realized at: ' . $sale->realizedAt() . PHP_EOL;
         echo PHP_EOL;
 
-        $builder = new InvoiceBuilder();
+        $builder = new ProductInvoiceBuilder();
 
         $invoice = $builder->toTheCompany('The bigger tecnologic company', '123.123.1123.0001-12', '1 The bigger company St.')
             ->withContact('contact@thebiggercompany.com')
@@ -99,6 +96,7 @@ foreach ($budgetList as $key => $budget) {
         echo "------ Start Invoice ------" . PHP_EOL;
         echo "Data of the invoice" . PHP_EOL;
         echo "Date: {$invoice->generatedAt()}"  . PHP_EOL;
+        echo "Invoice type: {$invoice->invoiceType()}"  . PHP_EOL;
         echo "Company: {$invoice->companyName()} - {$invoice->companyCNPJ()}"  . PHP_EOL;
         echo "Address: {$invoice->companyAddress()}" . PHP_EOL;
         echo "Contact: {$invoice->companyContact()}" . PHP_EOL;

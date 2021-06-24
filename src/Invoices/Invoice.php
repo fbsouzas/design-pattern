@@ -17,6 +17,7 @@ class Invoice
     private float $tax;
     private string $observation;
     private DateTimeInterface $generatedAt;
+    private string $invoiceType;
 
     public function setCompanyCNPJ(string $companyCNPJ): void
     {
@@ -58,6 +59,11 @@ class Invoice
         $this->generatedAt = $generatedAt;
     }
 
+    public function setInvoiceType(string $invoiceType): void
+    {
+        $this->invoiceType = $invoiceType;
+    }
+
     public function companyCNPJ(): string
     {
         return $this->companyCNPJ;
@@ -86,6 +92,11 @@ class Invoice
     public function generatedAt(): string
     {
         return $this->generatedAt->format('Y-m-d H:i:s');
+    }
+
+    public function invoiceType(): string
+    {
+        return $this->invoiceType;
     }
 
     public function value(): float
