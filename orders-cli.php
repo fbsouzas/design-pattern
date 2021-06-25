@@ -49,10 +49,15 @@ $budget3->addItem($item100);
 $budget3->addItem($item100);
 $budget3->disapprove();
 
+$budget4 = clone $budget3;
+$budget4->approve();
+$budget4->finish();
+
 $budgetList = new BudgetList();
 $budgetList->addBudget($budget1);
 $budgetList->addBudget($budget2);
 $budgetList->addBudget($budget3);
+$budgetList->addBudget($budget4);
 
 foreach ($budgetList as $key => $budget) {
     echo 'Value: ' . $budget->value() . PHP_EOL;
@@ -126,4 +131,3 @@ foreach ($budgetList as $key => $budget) {
         $xmlReportType->export($reportData);
     }
 }
-

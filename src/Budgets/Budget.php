@@ -22,6 +22,11 @@ class Budget implements Budgetable
         $this->state = new InApproval();
     }
 
+    public function __clone()
+    {
+        $this->state = new InApproval();
+    }
+
     public function calculateExtraDiscount(): void
     {
         $this->value -= $this->state->calculateExtraDiscount($this);
