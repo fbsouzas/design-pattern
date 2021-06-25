@@ -143,3 +143,8 @@ I used this pattern to create spacific complex invoices classes:
     - [InvoiceBuilder](src/Invoices/InvoiceBuilder.php)
     - [ProductInvoiceBuilder](src/Invoices/ProductInvoiceBuilder.php)
     - [ServiceInvoiceBuilder](src/Invoices/ServiceInvoiceBuilder.php)
+
+### Prototype
+I used this pattern to create a new budget based on an older budget:
+
+- [Budget](src/Budgets/Budget.php)
