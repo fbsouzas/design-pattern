@@ -10,6 +10,7 @@ use Fbsouzas\DesignPattern\Invoices\ProductInvoiceBuilder;
 use Fbsouzas\DesignPattern\Items\Item;
 use Fbsouzas\DesignPattern\Items\ItemCacheProxy;
 use Fbsouzas\DesignPattern\Orders\OrderCreator;
+use Fbsouzas\DesignPattern\PdoConnection;
 use Fbsouzas\DesignPattern\Reports\Budget\BudgetReportData;
 use Fbsouzas\DesignPattern\Reports\XMLReportType;
 use Fbsouzas\DesignPattern\Sales\ProductSaleFactory;
