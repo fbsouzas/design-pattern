@@ -148,3 +148,8 @@ I used this pattern to create spacific complex invoices classes:
 I used this pattern to create a new budget based on an older budget:
 
 - [Budget](src/Budgets/Budget.php)
+
+### Singleton
+I used this pattern to create just one instance of the database connector:
+
+- [PdoConnection](src/PdoConnection.php)
